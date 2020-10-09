@@ -1,0 +1,138 @@
+artur@DL585-G7:~$ history
+    1  sudo service gdm stop
+    2  ctrl+alt+f2
+    3  sudo service gdm stop
+    4  sudo apt-get update
+    5  sudo apt install python3-pip
+    6  sudo apt-get install buil-essential cmake git unzip pkg-config
+    7  sudo apt-get install build-essential cmake git unzip pkg-config
+    8  sudo apt-get install libjpeg-dev
+    9  sudo apt-get install libtiff5-dev
+   10  sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev
+   11  sudo apt-get install libv4l-dev
+   12  sudo apt-get install libxvidcore-dev libx264-dev
+   13  sudo apt-get install libgtk-3-dev
+   14  sudo apt-get install libhdf5-serial-dev graphviz 
+   15  sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-def gfortran
+   16  sudo apt-get install libopenblas-dev liblapack-dev libatlas-base-dev gfortran
+   17  sudo apt-get install python3-tk
+   18  sudo apt-get install python3-pil.imagetk
+   19  sudo apt-get install python3-dev
+   20  sudo apt-get install linux-image-generic linux-image-extra-virtual
+   21  sudo 
+   22  sudo apt-get install linux-source linux-headers-generic
+   23  sudo nano /etc/modprobe.d/blacklist-nouveau.conf
+   24  echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
+   25  sudo update-initramfs -u
+   26  sudo reboot
+   27  pwd
+   28  ls
+   29  cd ./CUDA
+   30  ls
+   31  sudo sh cuda_10.0.130.410.48_linux.run
+   32  sudo sh cuda_10.0.130_410.48_linux.run
+   33  sudo reboot
+   34  cd ./CUDA
+   35  ls
+   36  sudo sh cuda_10.0.130_410.48_linux.run
+   37  cd ./CUDA
+   38  ls
+   39  sudo sh cuda_10.0.130_410.48_linux.run
+   40  sudo service gdm stop
+   41  cd /
+   42  sudo service gdm stop
+   43  sudo service lightgdm stop
+   44  cd ls
+   45  ls
+   46  cd /home/artur
+   47  pwd
+   48  cd ./CUDA
+   49  sudo sh cuda_10.0.130_410.48_linux.run
+   50  modprobe nvidia
+   51  ls
+   52  NVIDIA-Linux-x86_64-410.-diagnostics.run
+   53  sudo sh NVIDIA-Linux-x86_64-410.-diagnostics.run
+   54  sudo sh NVIDIA-Linux-x86_64-410-diagnostics.run
+   55  sudo sh NVIDIA-Linux-x86_64-410.129-diagnostics.run
+   56  sudo sh NVIDIA-Linux-x86_64-410.129-diagnostic.run
+   57  ls
+   58  cd /
+   59  sudo nano ~/.bashrc
+   60  source ~/.bashrc
+   61  cd ./CUDA
+   62  cd /usr/local/CUDA
+   63  ls
+   64  cd /home/artur/CUDA
+   65  ls
+   66  cd //
+   67  pwd
+   68  ls
+   69  cd /home/artur/cuda-10.0
+   70  cd /home/artur/CUDA-10.0
+   71  cd /home/artur/CUDA
+   72  ls
+   73  cd /home/artur
+   74  ls
+   75  cd ./NVIDIA_CUDA-10.0_Samples
+   76  ls
+   77  cd ./NVIDIA_CUDA-10.0_Samples/1_Utilities/deviceQuery
+   78  cd ./NVIDIA_CUDA-10.0_Samples/1_Utilities/
+   79  cd ./NVIDIA_CUDA-10.0_Samples/1_Utilities
+   80  ls
+   81  cd ./1_Utilities
+   82  ls
+   83  cd ./deviceQuery
+   84  ls
+   85  sudo make
+   86  ./deviceQuery
+   87  nvidia smi
+   88  cd /home/artur
+   89  nvidia smi
+   90  sudo reboot
+   91  nvidia smi
+   92  on
+   93  pwd
+   94  ls
+   95  cd ./NVIDIA_CUDA-10.0_Samples
+   96  ls
+   97  cd ./1_Utilities
+   98  ls
+   99  cd /deviceQuery
+  100  ./deviceQuery
+  101  cd ./deviceQuery
+  102  ./deviceQuery
+  103  nvidia smi
+  104  nvidia-smi
+  105  cd /home/artur/CUDA
+  106  ls
+  107  sudo dpkg libcudnn7_7.6.4.38-1+cuda10.0_amd64.deb 
+  108  sudo dpkg -i libcudnn7_7.6.4.38-1+cuda10.0_amd64.deb 
+  109  sudo dpkg -i libcudnn7-dev_7.6.4.38-1+cuda10.0_amd64.deb 
+  110  sudo dpkg -i libcudnn7-doc_7.6.4.38-1+cuda10.0_amd64.deb 
+  111  nvidia-smi
+  112  python3
+  113  pip3 install scipy
+  114  pip3 install tensorflow-gpu==1.13.2
+  115  python
+  116  python3
+  117  pip3 install matplotlib
+  118  python3
+  119  sudo apt-get install python-yaml
+  120  sudo apt-get install python3-yaml
+  121  python
+  122  python3
+  123  pip3 install pydot-ng
+  124  pip3 install opencv-python
+  125  pip3 install opencv-python3
+  126  sudo apt-get install python3-opencv
+  127  pip3 install pandas
+  128  pip3 install scikit-learn
+  129  pip3 install statsmodels
+  130  pip3 install beautifulsoup4
+  131  pip3 install networkx
+  132  pip3 install nltk
+  133  pip3 install gensim
+  134  python3
+  135  pip3 install copy
+  136  pip3 install keras==2.33
+  137  pip3 install keras==2.3.1
