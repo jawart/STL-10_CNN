@@ -1,0 +1,147 @@
+1.  To co jest w summary mogło być w readme, żeby na wierzchu był opis projektu :)
+
+Odp.:   
+    Wydawało mi się, że readme to są raczej pliczki txt natury informacyjno organizacyjnej 
+natomiast mój summary ma charakter raportu z projektu i część jego zawartości 
+(wykres, tabelka) była tworzona dynamicznie w jupyterze ale w tym momencie to 
+chyba raczej kwestia nazwy. 
+
+--------------------------------------------------------------------------------------
+
+2.  W uczeniu nie ma early stoppingu. Widać, że te liczby epok są tak dobrane, 
+    żeby kończyć w dobrym momencie, ale w praktyce używa się early stoppingu i 
+    to jest właściwe podejście.
+
+Odp.: 
+    Pierwszy raz early stopping zobaczyłem na zajęciach kiedy już zamknąłem projekt. 
+Sam się dziwię, że nie natknąłem się na to nigdzie wcześniej.
+Z drugiej strony nie pamiętam już czy to zostawiłem w ostatecznej wersji czy nie, 
+(bo w międzyczasie robiłem sporo zmian i mogą być pozostałości,
+które były bardziej zrozumiałe w wersjach wcześniejszych) ale miałem przypadek 
+gdzie krzywe walidacji rosły, potem gwałtownie opadały do lokalnego minimum 
+a potem normalnie rosły do końca, powyżej pierwszego maksimum.
+Tutaj early stopping przy zbyt małym buforze mógłby zatrzymać to na lokalnym minimum wykresu.
+Poza tym na tym projekcie uczyłem się sieci od zupełnego zera i ciekawiło mnie 
+to co się dzieje do końca i jak się dzieje.
+
+--------------------------------------------------------------------------------------
+
+3.  Augmentacje lepiej robić w locie podczas uczenia.
+
+Odp.: 
+    Nie wszystko da się zrobić z augmentacja w locie.
+Czytałem, że gotową bazę innej sieci można uruchomić na swoim zbiorze,
+zapisać wygenerowane przez nią wartości na dysku jako tablice Numpy
+a następnie użyć ich jako danych wejściowych do swojego klasyfikatora.
+I że jest to szybsze i mniej kosztowne bo wymaga jednokrotnego uruchomienia bazy
+ale za to nie można zrobić augmentacji w locie. 
+Pierwotnie chciałem coś takiego też wypróbować ale tak mi się to zaczęło rozrastać, 
+że musiałem się powstrzymywać i zacząłem z niektórych planów rezygnować.
+Druga sprawa to trening sieci jest sam w sobie kosztowny i bałem się,
+że to byłoby dodatkowe obciążenie i wydłużenie treningu.
+Poniekąd się to potem potwierdziło w tym sensie, że czasami trenowania mi się zawieszały,
+nie wiem czy z taką augmentacją nie byłoby to częściej.
+Kolejna sprawa - na początku obawiałem się, że będę miał za mało materiału na projekt więc
+żeby było więcej i nie trywialnie to dodałem trochę komplikacji na etapie obróbki danych typu
+wybór dwóch klas zamiast całego zbioru, ręczne zwiększenie ilości danych itp.
+Poza tym augmentacja w locie to trochę taka czarna skrzynka a ja chciałem poznać jak to działa
+od kuchni i własnoręcznie przerobiłem procedurę augmentacji w locie na augmentację na dysk,
+rozpracowując działanie tego algorytmu linijka po linijce.
+Na taki tryb augmentacji (na dysk) nie natknąłem się nigdzie i był to mój pomysł 
+na rozwiązanie problemu kiedy nie można zastosować augmentacji w locie, przez co może to być 
+rozwiązanie bardziej uniwersalne. 
+
+--------------------------------------------------------------------------------------
+
+4.  Nie rozumiem kolumny remarks w wynikach.
+
+Odp.: 
+    Pierwotnie tego nie było w planie ale w międzyczasie coś takiego okazało się użyteczne 
+dla mnie i dlatego dodałem. 
+    W momencie zakończenia treningu i wygenerowania wykresów pojawiła się potrzeba oceny 
+dalszej przydatności modelu i odnotowania informacji przydatnej do dalszych treningów np.
+czy ten model jest ok, czy przeuczony a jeżeli tak to od którego momentu itp.
+Np. acc = 0.88 i remark 'ok'. oznacza, że model jest dobrze wytrenowany ale wynik mało 
+satysfakcjonujący więc jest to wskazówka do następnego treningu.
+acc = 0.95 i remark '20-overfit' jest informacją, że następny model może być dobry po treningu 
+do ok 20-21 epoki i wtedy następny trening na 21 epok zazwyczaj dawał model optymalny, 
+wytrenowany na maksa ale bez przeuczenia i teraz remark był jako 'ok'.
+Potwierdziło się potem, że modele z remarkiem 'ok' miały prawie takie samo acc na teście 
+jak na walidacji. W ostatnim punkcie do evaluacji na danych testowych wybierałem z tabeli 
+modele tylko z takim remarkiem, z innymi nie, nawet jeżeli acc walidacji miały lepsze.
+
+--------------------------------------------------------------------------------------
+
+5.  Uczenie i testowanie tych wszystkich modeli trzeba było skondensować i zautomatyzować -
+    to jest mnóstwo razy pisane to samo z dokładnośćią do kilku linijek kodu.
+    Przez to jest bardzo ciężko przez to przebrnąć ciężko znaleźć różnicę między 
+    niektórymi notebookami.
+    I po prostu nienajlepiej się to prezentuje. 
+    Fajnie by było napisać jedną funkcję i ją odpalać dla różnych wariantów modeli.
+    I wszystko mogłoby się zmieśić w 3 notebookach zamiast 20 :)
+
+Odp.: 
+    Poniekąd było to zautomatyzowane. Początkowo do całego treningu, wykresów i zapisu wyniku 
+na dysk było wywołanie jednej funkcji, którą potem podzieliłem na dwie żeby się to zatrzymało 
+do podania remarku. Od tego był krok do czegoś w rodzaju pipeline'u i był taki moment, 
+że o tym myślałem. Po zrobieniu projektu uważam jednak, że dobrze, że tak nie zrobiłem, 
+a to z powodu przypadków zawieszania się obliczeń. W takich sytuacjach kończyło się restartem 
+i uruchamianiem jupytera jeszcze raz. W wypadku obliczeń na kartach konieczne było inicjowanie 
+przyporządkowania kart na początku czyli wszystko musiało być zrestartowane. Do tego dochodziła 
+bardzo przyziemne problemy z temperaturą kart, które przy wyższej temperaturze pomieszczenia 
+w cieplejsze dni miały tendencje do przegrzewania się i bałem sie, że się mogą wyłączyć, 
+dlatego celowo dzieliłem cykle obliczeniowe na mniejsze a nie łączyłem ich. 
+Dłuższy trening to większe ryzyko, że mi to padnie przez przegrzanie. Podział na tyle części 
+pozwolił mi uniknąć ryzyka zaczynania od początku. Przy takim podziale ryzykowałem restartem 
+kilku mniej kosztownych lub tylko jednego kosztownego treningu a nie większej ich ilości.
+Na podstawie moich doświadczeń mogę powiedzieć, że byłoby ryzyko nie wykonania notebooka 
+do końca gdyby były tylko trzy.
+W niektórych przypadkach kod notebooków jest nie tylko podobny ale identyczny bo
+do następnego treningu kopiowałem notebook i tylko zmieniałem niektóre tytuły i argumenty 
+wejściowe do tych samych funkcji.
+
+--------------------------------------------------------------------------------------
+
+6.  Uwaga estetyczna: te wszystkie wydruki z uczenia warto byłoby usunąć -
+    skoro mamy wykresy to te setki linii wydruków juz nic nie wnoszą i utrudniają 
+    ogarniecie co się dzieje w projekcie.
+
+Odp.:
+    Jeżeli mamy rozwinięte wszystkie komórki to jak najbardziej zgoda, przeglądanie 
+czegoś takiego to koszmar. Natomiast można zapytać czy nie większym koszmarem byłoby 
+poruszanie się po jednym notebooku z wynikami 56-ciu treningów i czy kod "pipelineowy" 
+nie byłby trudniejszy do zrozumienia.
+Tutaj wystarczy przeanalizować jeden z krótkich notebooków a pozostałe są niejednokrotnie 
+bliźniacze. Ale coś za coś. No i te same przyczyny co w poprzednim punkcie.
+Jeżeli chodzi o wydruki dla wszystkich epok to można było zmienić verbose ale
+remark ustalałem na podstawie i wykresu i zaglądałem nieraz do wartości pośrednich, 
+czasami mi się to przydawało.
+Poza tym dzięki nim widziałem czy obliczenia przebiegają poprawnie czy nie utknęły w miejscu 
+i się zawiesiły. A jak się po prostu zwinie te komórki z epokami treningów to już nie 
+wygląda to tak źle.
+
+--------------------------------------------------------------------------------------
+
+7.  Fajne wizualizacje filtrów w pierwszym przypadku - poza drugim przypadkiem,
+    gdzie te wizualizacje niewiele wnoszą skoro model nie jest nauczony,
+    ale rozumiem że taki był zamysł pokazania różnic.
+
+Odp.:
+    Jako początkujący byłem ciekaw jak to wygląda przed i po, i miała być to wizualizacja 
+uczenia więc pokazanie zmian jakie zachodzą podczas treningu na zasadzie przed - po.
+
+--------------------------------------------------------------------------------------
+
+8.  Odnośnie modułu z funkcjami - nie robi się w funkcjach importów bibliotek - 
+    to powinno być na zewnątrz
+
+Odp.:
+    Może zrobiłem coś nie tak ale bez importów w funkcjach pokazywał się błąd, że 
+python nie wie co to jest. Nie badałem tego dokładnie ale wydaje mi się, że chodzi o to, 
+że te funkcje nie są w notebooku tylko w zewnętrznym pliku i jak funkcja była tworzona
+wewnątrz notebooka to korzystała z importów w tym notebooku spoza funkcji a jak była 
+poza notebookiem to już nie. A ja umieściłem je w oddzielnym pliku bo były wspólne 
+dla wielu notebooków a funkcje wizualizacyjne mogą być wykorzystane w dowolnym projekcie.
+Oprócz powyższego jest jeszcze taka kwestia, że funkcja z własnymi importami jest 
+zupełnie niezależna i samowystarczalna, można ją sobie skopiować do innego projektu 
+bez całej reszty tego pliku i bez przejmowania się jakie importy są jej potrzebne.
